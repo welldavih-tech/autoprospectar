@@ -154,7 +154,7 @@ if btn_executar:
         0, text="Iniciando conexão com o CRM..."
     )
 
-driver = None
+    driver = None
     try:
       options = webdriver.ChromeOptions()
       options.add_argument("--start-maximized")
