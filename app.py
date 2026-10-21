@@ -154,7 +154,7 @@ if btn_executar:
         0, text="Iniciando conexão com o CRM..."
     )
 
-    driver = None
+driver = None
     try:
       options = webdriver.ChromeOptions()
       options.add_argument("--start-maximized")
@@ -164,12 +164,13 @@ if btn_executar:
       options.add_argument("--disable-gpu")
       options.add_argument("--window-size=1920,1080")
       
-      # Linha crucial para forçar o uso do Chromium instalado no Linux do Streamlit
+      # Caminhos nativos do Linux no Streamlit Cloud
       options.binary_location = "/usr/bin/chromium"
+      
+      from selenium.webdriver.chrome.service import Service
+      service = Service("/usr/bin/chromedriver")
 
-      driver = webdriver.Chrome(
-          service=Service(ChromeDriverManager().install()), options=options
-      )
+      driver = webdriver.Chrome(service=service, options=options)
 
       url_crm = "https://pilot.mazzabroker.com.br/login"
       driver.get(url_crm)
